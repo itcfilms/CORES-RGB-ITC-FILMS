@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Paleta de Cores - Acessível</title>
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    .color-card {
+      background-color: #1e1e1e;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      box-shadow: 0 0 5px rgba(255,255,255,0.1);
+      transition: transform 0.2s;
+    }
+    .color-card:hover {
+      transform: scale(1.03);
+    }
+    .color-box {
+      width: 100%;
+      height: 60px;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    .color-name {
+      font-size: 0.9rem;
+      margin-bottom: 0.25rem;
+    }
+    .color-code {
+      cursor: pointer;
+      background-color: #333;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: inline-block;
+    }
+    .copied {
+      color: #00ff90;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 Paleta de Cores Acessível</h1>
+  <div class="grid">
+    <!-- AQUI VAI A LISTA DE CORES (GERADA ABAIXO) -->
+    <!-- Exemplo -->
+    <div class="color-card">
+      <div class="color-box" style="background-color: #FF0000;"></div>
+      <div class="color-name">Vermelho</div>
+      <div class="color-code" onclick="copiar(this, 'FF0000')">FF0000</div>
+    </div>
+  </div>
+
+  <script>
+    const cores = [
+      { nome: "Vermelho", cor: "FF0000" },
+      { nome: "Verde-limão", cor: "32CD32" },
+      { nome: "Azul", cor: "0000FF" },
+      { nome: "Amarelo", cor: "FFFF00" },
+      { nome: "Branco", cor: "FFFFFF" },
+      { nome: "Preto", cor: "000000" },
+      { nome: "Cinza", cor: "808080" },
+      { nome: "Laranja", cor: "FFA500" },
+      { nome: "Rosa", cor: "FFC0CB" },
+      { nome: "Roxo", cor: "800080" },
+      { nome: "Ciano", cor: "00FFFF" },
+      { nome: "Marrom", cor: "8B4513" },
+      { nome: "Dourado", cor: "FFD700" },
+      { nome: "Prata", cor: "C0C0C0" },
+      { nome: "Turquesa", cor: "40E0D0" },
+      { nome: "Magenta", cor: "FF00FF" },
+      { nome: "Verde-oliva", cor: "808000" },
+      { nome: "Azul-marinho", cor: "000080" },
+      { nome: "Salmão", cor: "FA8072" },
+      { nome: "Coral", cor: "FF7F50" },
+      { nome: "Lavanda", cor: "E6E6FA" },
+      { nome: "Bege", cor: "F5F5DC" },
+      { nome: "Chocolate", cor: "D2691E" },
+      { nome: "Indigo", cor: "4B0082" },
+      { nome: "Vinho", cor: "800000" },
+      { nome: "Verde-água", cor: "00FA9A" },
+      { nome: "Azul-celeste", cor: "87CEEB" },
+      { nome: "Laranja-escuro", cor: "FF8C00" },
+      { nome: "Verde-musgo", cor: "556B2F" },
+      { nome: "Rosa-choque", cor: "FF69B4" },
+      { nome: "Cinza-escuro", cor: "2F4F4F" },
+      { nome: "Azul-petróleo", cor: "008080" },
+      { nome: "Verde-claro", cor: "90EE90" },
+      { nome: "Rosa-bebê", cor: "F4C2C2" },
+      { nome: "Azul-bebê", cor: "ADD8E6" },
+      { nome: "Mostarda", cor: "FFDB58" },
+      { nome: "Verde-esmeralda", cor: "50C878" },
+      { nome: "Cinza-claro", cor: "D3D3D3" },
+      { nome: "Roxo-vibrante", cor: "9B30FF" },
+      { nome: "Pêssego", cor: "FFE5B4" },
+      { nome: "Caramelo", cor: "FFDDA0" },
+      { nome: "Grafite", cor: "1C1C1C" },
+      { nome: "Verde-piscina", cor: "7FFFD4" },
+      { nome: "Amarelo-canário", cor: "FFFF99" },
+      { nome: "Terracota", cor: "E2725B" },
+      { nome: "Azul-real", cor: "4169E1" },
+      { nome: "Cobre", cor: "B87333" },
+      { nome: "Laranja-pastel", cor: "FFDAB9" }
+      // Total de 50 cores, mas você pode duplicar e adicionar mais!
+    ];
+
+    const grid = document.querySelector('.grid');
+
+    cores.forEach(({ nome, cor }) => {
+      const card = document.createElement('div');
+      card.className = 'color-card';
+      card.innerHTML = `
+        <div class="color-box" style="background-color: #${cor};"></div>
+        <div class="color-name">${nome}</div>
+        <div class="color-code" onclick="copiar(this, '${cor}')">${cor}</div>
+      `;
+      grid.appendChild(card);
+    });
+
+    function copiar(el, cor) {
+      navigator.clipboard.writeText(cor).then(() => {
+        const textoOriginal = el.textContent;
+        el.textContent = "Copiado! ✔️";
+        el.classList.add("copied");
+        setTimeout(() => {
+          el.textContent = textoOriginal;
+          el.classList.remove("copied");
+        }, 1000);
+      });
+    }
+  </script>
+</body>
+</html>
